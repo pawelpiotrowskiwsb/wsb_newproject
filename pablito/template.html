@@ -1,0 +1,223 @@
+<html lang="pl">
+    <head>
+        <title>OPGG</title>
+
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+            crossorigin="anonymous"
+        />
+    </head>
+
+    <body>
+        <section class="bg-dark ">
+            <div class="container  p-3 " style="color: rgb(160, 194, 228)">
+            <div class="d-flex align-items-center row">
+    
+           
+                <div class="col-md-3">
+                    <img src="" alt="" style=" max-width: 150px;" />
+    
+                </div>
+                <div class="p-3 col-md-3">
+                    <h1 class="name" style="margin-top:2%;"></h1>
+                    <p style="font-size: large;">Level&nbsp;<span class="lvl"></span></p>
+                    <span class="tier"></span>&nbsp;<span class="rank"></span>
+                </div>
+                <div class="col-md-6">
+                    <a style="float:right" href="index.html"><button class="btn btn-primary ">Wyszukaj ponownie </button></a>
+                            </div>
+            </div>
+        </div>
+    
+        </section>
+        
+
+        <main class="container">
+            <section class="bg-light row">
+                <div class="col-4">
+                    <div style="height: 200px">
+                        <img class="division" src="" style="max-width: 150px; margin-left: 2%; margin-top: 2%;"/>
+                    </div>
+                    <button style="max-width: 50px; max-height: 50px" id="send">CLICK ME</button>
+        <span class="wins"></span>
+        <span class="losses"></span>
+        <span id="wrate" class="winratio"></span>
+        
+       
+                    <div style="height: 500px"></div>
+                </div>
+                <div class="col-8">
+                    <div style="height: 200px" class="row"><!-- over match history !-->
+                        <div class="col-3"></div>
+                        <div class="col-3"></div>
+                        <div class="col-3"></div>
+                        <div class="col-3"></div>
+                    </div>
+                    <div> <!-- match history !-->
+                        <section>
+                            <div class="row p-3" id="blok1">
+                                <div class="col-6">
+                                    <img src="" class="playerChampion rounded-circle"/><span class="kills"></span>&nbsp;/ &nbsp;<span class="deaths"></span>&nbsp;/ &nbsp;<span class="assist"></span>
+                                    <img src=""class="playerItems" style="max-width: 35px;"/>
+                                    <img src=""class="playerItems" style="max-width: 35px;"/>
+                                    <img src=""class="playerItems" style="max-width: 35px;"/>
+                                    <img src=""class="playerItems" style="max-width: 35px;"/>
+                                    <img src=""class="playerItems" style="max-width: 35px;"/>
+                                    <img src=""class="playerItems" style="max-width: 35px;"/>
+                                </div>
+                                <div class="col-3">
+                                    <img src="" class="playerChampion" />
+                                    
+    
+                                    <table style="float: left;">
+                                        <tr>
+                                            <td><img src="" class="playericon" style="max-width: 25px;" /><span
+                                                    class="playername"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="" class="playericon" style="max-width: 25px;" /><span
+                                                    class="playername"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="" class="playericon" style="max-width: 25px;" /><span
+                                                    class="playername"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="" class="playericon" style="max-width: 25px;" /><span
+                                                    class="playername"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="" class="playericon" style="max-width: 25px;" /><span
+                                                    class="playername"></span></td>
+                                        </tr>
+                                    </table>
+    
+                                </div>
+                                <div class="col-3">
+                                    <table>
+                                        <tr>
+                                            <td><img src="" class="playericon" style="max-width: 25px;" /><span
+                                                    class="playername"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="" class="playericon" style="max-width: 25px;" /><span
+                                                    class="playername"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="" class="playericon" style="max-width: 25px;" /><span
+                                                    class="playername"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="" class="playericon" style="max-width: 25px;" /><span
+                                                    class="playername"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="" class="playericon" style="max-width: 25px;" /><span
+                                                    class="playername"></span></td>
+                                        </tr>
+                                    </table>
+                                </div>
+    
+                            </div>
+                </div>
+            </section>
+        </main>
+        <script>
+            const urlParams = new URLSearchParams(window.location.search);
+            document.getElementById("send").addEventListener("click", () => {
+                
+                const getData = async () => {
+                    const response = await fetch("http://localhost:3005/get-data?name=" + urlParams.get("nickname"));
+                    const data = await response.json();
+                    console.log(data);
+                    document.querySelector("img").src = data.profileIcon;
+                    document.querySelector(".name").innerText = data.name;                   
+                    document.querySelector(".tier").innerText = data.tier ? data.tier : "NO TIER";
+                    document.querySelector(".rank").innerText = data.rank ? data.rank : "NO TIER";
+                    document.querySelector(".lvl").innerText = data.level;
+                    document.querySelectorAll(".playername").forEach((player, index) => {
+                        player.innerHTML = data.matchesWithData[0].info.participants[index].summonerName;
+                    });
+                    //http://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/1001.png items
+                    
+                    for(let i = 0; i< 9;i++){
+                    
+                        if(data.matchesWithData[0].info.participants[i].summonerName===data.name){
+                            document.querySelector(".playerChampion").src = `http://ddragon.leagueoflegends.com/cdn/13.1.1/img/champion/${data.matchesWithData[0].info.participants[i].championName}.png`
+                            document.querySelector(".kills").innerText =data.matchesWithData[0].info.participants[i].kills;  
+                            document.querySelector(".deaths").innerText =data.matchesWithData[0].info.participants[i].deaths;
+                            document.querySelector(".assist").innerText =data.matchesWithData[0].info.participants[i].assists;
+                            if(data.matchesWithData[0].info.participants[i].win){
+                                document.getElementById("blok1").style.backgroundColor="green";
+                            }else{
+                                document.getElementById("blok1").style.backgroundColor="red";
+                            }
+                            document.querySelectorAll(".playerItems").forEach((player, index) => {
+                            
+                            if(data.matchesWithData[0].info.participants[i]["item"+index.toString()]!=0){
+                                player.src = `http://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${data.matchesWithData[0].info.participants[i]["item"+index.toString()]}.png`;
+                            }
+                            });
+                            // document.querySelector(".summonerSpell1").src = 
+                            // document.querySelector(".summonerSpell2").src = 
+                            
+                        }
+                    }
+                    
+                    document.querySelectorAll(".playericon").forEach((player, index) => {
+                            player.src= `http://ddragon.leagueoflegends.com/cdn/13.1.1/img/champion/${data.matchesWithData[0].info.participants[index].championName}.png`;
+                    }); 
+                    document.querySelector(".wins").innerText = data.wins;
+                    document.querySelector(".losses").innerText = data.losses;
+                    const games = data.losses + data.wins;
+                    document.querySelector(".winratio").innerText = Math.round(data.wins/games*100)+'%';
+                    if(Math.round(data.wins/games*100)<50){
+                    document.getElementById("wrate").style.color="red";
+                       
+                    }else {
+                       document.getElementById("wrate").style.color="green";
+                    }
+                    switch(data.tier){
+                        case 'BRONZE':
+                            document.querySelector(".division").src = 'base-icons/bronze.png';
+                            break;
+                        case 'SILVER':
+                            document.querySelector(".division").src = 'base-icons/silver.png';
+                            break;
+                        case 'GOLD':
+                            document.querySelector(".division").src = 'base-icons/gold.png';
+                            break;
+                        case 'PLATINUM':
+                            document.querySelector(".division").src = 'base-icons/platinum.png';
+                            break;
+                        case 'DIAMOND':
+                            document.querySelector(".division").src = 'base-icons/diamond.png';
+                            break;
+                        case 'MASTER':
+                            document.querySelector(".division").src = 'base-icons/master.png';
+                            break;
+                        case 'CHALLENGER':
+                            document.querySelector(".division").src = 'base-icons/challenger.png';
+                            break;
+                        default:
+                            document.querySelector(".division").src = 'base-icons/provisional.png';
+                            break;
+                    }
+                };
+                getData();
+            });
+        </script>
+
+        
+    </body>
+</html>
